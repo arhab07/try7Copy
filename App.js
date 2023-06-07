@@ -101,7 +101,7 @@ export default function App() {
   useEffect(() => {
     const checkForUpdates = async () => {
       try {
-        const update = await Updates.checkForUpdateAsync({ manifestUrl: 'https://d3a80tbvlzmc9d.cloudfront.net/dist/android-index.json' });
+        const update = await Updates.checkForUpdateAsync({ manifestUrl: 'https://d3a80tbvlzmc9d.cloudfront.net/android-index.json' });
         if (update.isAvailable) { 
           await Updates.fetchUpdateAsync();
           Updates.reloadAsync();
@@ -116,8 +116,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-      <BottomTabNavigator />
-
+      <DrawerNavigator />
       </NavigationContainer>
       <ExpoStatusBar style="auto" />
     </ThemeProvider>
