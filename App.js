@@ -19,6 +19,7 @@ import { Account } from './src/screen/Account';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SignEmail } from './src/Logincomponents/LogininwithEmailComponents/CreateAnAccount';
 import * as Updates from 'expo-updates';
+import { registerRootComponent } from 'expo';
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -95,24 +96,26 @@ const BottomTabNavigator = () => {
 };
 
 
+const manifestUrl = "https://d3a80tbvlzmc9d.cloudfront.net"
 
+const App =() =>{
+  // useEffect(() => {
+  //   const checkForUpdates = async () => {
+  //     try {
+  //       const update = await Updates.checkForUpdateAsync({ manifestUrl: 'https://d3a80tbvlzmc9d.cloudfront.net/android-index.json' });
+  //       if (update.isAvailable) { 
+  //         await Updates.fetchUpdateAsync();
+  //         Updates.reloadAsync();
+  //       }
+  //     } catch (error) {
+  //       console.error('Error checking for updates:', error);
+  //     }
+  //   };
 
-export default function App() {
-  useEffect(() => {
-    const checkForUpdates = async () => {
-      try {
-        const update = await Updates.checkForUpdateAsync({ manifestUrl: 'https://d3a80tbvlzmc9d.cloudfront.net/android-index.json' });
-        if (update.isAvailable) { 
-          await Updates.fetchUpdateAsync();
-          Updates.reloadAsync();
-        }
-      } catch (error) {
-        console.error('Error checking for updates:', error);
-      }
-    };
+  //   checkForUpdates();
+  // }, []);
+Expo.Constants.manifestUrl = manifestUrl
 
-    checkForUpdates();
-  }, []);
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
@@ -122,3 +125,6 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+
+registerRootComponent(App)

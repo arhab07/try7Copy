@@ -49,11 +49,11 @@ export const UdemyBar = () => {
       </LeadingButton>
 
       <TitleContainer>
-        <TitleImage
+        {/* <TitleImage
           source={{
             uri: "https://logowik.com/content/uploads/images/udemy-new-20212512.jpg",
           }}
-        />
+        /> */}
       </TitleContainer>
 
       <TrailingButton>
