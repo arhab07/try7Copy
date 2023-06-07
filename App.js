@@ -9,7 +9,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons'; 
 import { CustomDrawerContent } from './src/components/SlideBar';
 import { MainScreen } from "./src/screen/MainScreen";
-import { SignIn } from './src/Logincomponents/SignIn';
 import { MainScreenUI } from './src/Logincomponents/mainScreen';
 import { CreateScreenUI } from './src/Logincomponents/mainCreateScreen';
 import { Search } from './src/screen/Search';
@@ -17,10 +16,8 @@ import { MyLearning } from './src/screen/MyLearning';
 import { WishList } from './src/screen/WishList';
 import { Account } from './src/screen/Account';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { SignBox } from './src/Logincomponents/body';
-import { SignInWithEmail } from './src/Logincomponents/SignInWithEmail';
 import { SignEmail } from './src/Logincomponents/LogininwithEmailComponents/CreateAnAccount';
-
+import * as Updates from 'expo-updates';
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -100,6 +97,21 @@ const BottomTabNavigator = () => {
 
 
 export default function App() {
+  useEffect(() => {
+    const checkForUpdates = async () => {
+      try {
+        const update = await Updates.checkForUpdateAsync({ manifestUrl: 'https://d3a80tbvlzmc9d.cloudfront.net/android-index.json' });
+        if (update.isAvailable) { 
+          await Updates.fetchUpdateAsync();
+          Updates.reloadAsync();
+        }
+      } catch (error) {
+        console.error('Error checking for updates:', error);
+      }
+    };
+
+    checkForUpdates();
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
